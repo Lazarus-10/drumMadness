@@ -12,14 +12,23 @@ for(let i = 0; i< numberOfButtons; i++){
     document.querySelectorAll(".drum")[i].addEventListener("click", function(){
         var buttonInnerHTML = this.innerHTML;
         makeSound(buttonInnerHTML);
+        animate(buttonInnerHTML);
     });
     
 }
 
 document.addEventListener("keypress", function(event){
     makeSound(event.key);
+    animate(event.key);
 })
 
+function animate(box){
+    let content = document.querySelector("." + box);
+    content.classList.add("pressed");
+    setTimeout(function(){
+        content.classList.remove("pressed");
+    }, 100);
+}
 function makeSound(key){
     switch(key){
         case "a":
